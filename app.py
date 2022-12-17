@@ -2,15 +2,21 @@ from diffusers import AutoencoderKL, UNet2DConditionModel, StableDiffusionPipeli
 import gradio as gr
 import torch
 from PIL import Image
+from PIL.PngImagePlugin import PngInfo
 import utils
 import datetime
 import time
 import psutil
+import random
+import string
+import re
 
 from ray.serve.gradio_integrations import GradioServer
 
 start_time = time.time()
 is_colab = utils.is_google_colab()
+result_path = "/home/ubuntu/ml/chuan/lambda-demo/results/"
+max_model_name_length = 16
 
 class Model:
     def __init__(self, name, path="", prefix=""):
@@ -22,24 +28,24 @@ class Model:
 
 models = [
      Model("Arcane", "nitrosocke/Arcane-Diffusion", "arcane style "),
-     #Model("Dreamlike Diffusion 1.0", "dreamlike-art/dreamlike-diffusion-1.0", "dreamlikeart "),
      Model("Archer", "nitrosocke/archer-diffusion", "archer style "),
      Model("Anything V3", "Linaqruf/anything-v3.0", ""),
-     Model("Modern Disney", "nitrosocke/mo-di-diffusion", "modern disney style "),
-     Model("Classic Disney", "nitrosocke/classic-anim-diffusion", "classic disney style "),
-     Model("Loving Vincent (Van Gogh)", "dallinmackay/Van-Gogh-diffusion", "lvngvncnt "),
-     Model("Wavyfusion", "wavymulder/wavyfusion", "wa-vy style "),
-     Model("Analog Diffusion", "wavymulder/Analog-Diffusion", "analog style "),
-     Model("Redshift renderer (Cinema4D)", "nitrosocke/redshift-diffusion", "redshift style "),
-     Model("Midjourney v4 style", "prompthero/midjourney-v4-diffusion", "mdjrny-v4 style "),
-     Model("Waifu", "hakurei/waifu-diffusion"),
+     Model("Pokémon", "lambdalabs/sd-pokemon-diffusers"),
+     Model("Naruto", "lambdalabs/sd-naruto-diffusers"),
+     Model("Midjourney v4", "prompthero/midjourney-v4-diffusion", "mdjrny-v4 style "),
      Model("Cyberpunk Anime", "DGSpitzer/Cyberpunk-Anime-Diffusion", "dgs illustration style "),
      Model("Elden Ring", "nitrosocke/elden-ring-diffusion", "elden ring style "),
+     Model("Redshift", "nitrosocke/redshift-diffusion", "redshift style "),
+     Model("Modern Disney", "nitrosocke/mo-di-diffusion", "modern disney style "),
+     Model("Classic Disney", "nitrosocke/classic-anim-diffusion", "classic disney style "),
+     Model("Analog Diffusion", "wavymulder/Analog-Diffusion", "analog style "),
+     Model("Van Gogh", "dallinmackay/Van-Gogh-diffusion", "lvngvncnt "),
+     Model("Wavyfusion", "wavymulder/wavyfusion", "wa-vy style "),
+     Model("Waifu", "hakurei/waifu-diffusion"),
      Model("TrinArt v2", "naclbit/trinart_stable_diffusion_v2"),
      Model("Spider-Verse", "nitrosocke/spider-verse-diffusion", "spiderverse style "),
      Model("Balloon Art", "Fictiverse/Stable_Diffusion_BalloonArt_Model", "BalloonArt "),
      Model("Tron Legacy", "dallinmackay/Tron-Legacy-diffusion", "trnlgcy "),
-     Model("Pokémon", "lambdalabs/sd-pokemon-diffusers"),
      Model("Pony Diffusion", "AstraliteHeart/pony-diffusion"),
      Model("Robo Diffusion", "nousr/robo-diffusion"),
   ]
@@ -101,11 +107,37 @@ def inference(model_name, prompt, guidance, steps, n_images=1, width=512, height
 
   generator = torch.Generator('cuda').manual_seed(seed) if seed != 0 else None
 
+  
+
   try:
     if img is not None:
-      return img_to_img(model_path, prompt, n_images, neg_prompt, img, strength, guidance, steps, width, height, generator), None
+      images = img_to_img(model_path, prompt, n_images, neg_prompt, img, strength, guidance, steps, width, height, generator)
     else:
-      return txt_to_img(model_path, prompt, n_images, neg_prompt, guidance, steps, width, height, generator), None
+      images = txt_to_img(model_path, prompt, n_images, neg_prompt, guidance, steps, width, height, generator)
+
+    # save images to disk
+    run_id = ''.join(random.choices(string.ascii_lowercase, k=5))
+    download_file_path = [ ]
+    for i_img in range(n_images):
+      model_name_clean = model_name.replace(' ', '')
+      model_name_clean = re.sub(r'[\\/*?:"<>|]',"", model_name_clean)
+      model_name_clean = model_name_clean[:max_model_name_length]
+
+      image_name = result_path + run_id + \
+          "_" + model_name_clean + \
+          "_" + str(i_img) + ".png"
+
+      metadata = PngInfo()
+      metadata.add_text("stablediffusion.Style", model_name)
+      metadata.add_text("stablediffusion.Prompt", prompt)
+      metadata.add_text("stablediffusion.Steps", str(steps))
+      metadata.add_text("stablediffusion.Guidance", str(guidance))
+      metadata.add_text("stablediffusion.Seed", str(seed))
+
+      images[i_img].save(image_name, pnginfo=metadata)
+      download_file_path.append(image_name)
+
+    return images, download_file_path, None
   except Exception as e:
     return None, error_str(e)
 
@@ -200,7 +232,8 @@ def img_to_img(model_path, prompt, n_images, neg_prompt, img, strength, guidance
         # height = height,
         generator = generator)
         
-    return replace_nsfw_images(result)
+    # return replace_nsfw_images(result)
+    return result.images
 
 def replace_nsfw_images(results):
 
@@ -254,6 +287,7 @@ with demo:
               gallery = gr.Gallery(label="Generated images", show_label=False, elem_id="gallery").style(grid=[2], height="auto")
 
           error_output = gr.Markdown()
+          downloads=gr.Files(label="downloads")
 
         with gr.Column(scale=45):
           with gr.Tab("Options"):
@@ -264,7 +298,7 @@ with demo:
 
               with gr.Row():
                 guidance = gr.Slider(label="Guidance scale", value=7.5, maximum=15)
-                steps = gr.Slider(label="Steps", value=25, minimum=2, maximum=75, step=1)
+                steps = gr.Slider(label="Steps", value=50, minimum=2, maximum=75, step=1)
 
               with gr.Row():
                 width = gr.Slider(label="Width", value=512, minimum=64, maximum=1024, step=8)
@@ -283,7 +317,7 @@ with demo:
     # n_images.change(lambda n: gr.Gallery().style(grid=[2 if n > 1 else 1], height="auto"), inputs=n_images, outputs=gallery)
 
     inputs = [model_name, prompt, guidance, steps, n_images, width, height, seed, image, strength, neg_prompt]
-    outputs = [gallery, error_output]
+    outputs = [gallery, downloads, error_output]
     prompt.submit(inference, inputs=inputs, outputs=outputs)
     generate.click(inference, inputs=inputs, outputs=outputs)
 

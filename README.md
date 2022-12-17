@@ -27,7 +27,8 @@ cd .. && \
 git clone https://huggingface.co/spaces/chuanli-lambda/finetuned_diffusion && \
 cd finetuned_diffusion && \
 git checkout lambda && \
-pip install -r requirements.txt
+pip install -r requirements.txt && \
+pip install --force-reinstall httpcore==0.15
 ```
 
 ## Run demo
