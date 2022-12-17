@@ -27,27 +27,26 @@ class Model:
         self.pipe_i2i = None
 
 models = [
-     Model("Arcane", "nitrosocke/Arcane-Diffusion", "arcane style "),
-     Model("Archer", "nitrosocke/archer-diffusion", "archer style "),
      Model("Anything V3", "Linaqruf/anything-v3.0", ""),
-     Model("Pokémon", "lambdalabs/sd-pokemon-diffusers"),
-     Model("Naruto", "lambdalabs/sd-naruto-diffusers"),
      Model("Midjourney v4", "prompthero/midjourney-v4-diffusion", "mdjrny-v4 style "),
-     Model("Cyberpunk Anime", "DGSpitzer/Cyberpunk-Anime-Diffusion", "dgs illustration style "),
-     Model("Elden Ring", "nitrosocke/elden-ring-diffusion", "elden ring style "),
-     Model("Redshift", "nitrosocke/redshift-diffusion", "redshift style "),
-     Model("Modern Disney", "nitrosocke/mo-di-diffusion", "modern disney style "),
-     Model("Classic Disney", "nitrosocke/classic-anim-diffusion", "classic disney style "),
-     Model("Analog Diffusion", "wavymulder/Analog-Diffusion", "analog style "),
-     Model("Van Gogh", "dallinmackay/Van-Gogh-diffusion", "lvngvncnt "),
-     Model("Wavyfusion", "wavymulder/wavyfusion", "wa-vy style "),
-     Model("Waifu", "hakurei/waifu-diffusion"),
-     Model("TrinArt v2", "naclbit/trinart_stable_diffusion_v2"),
-     Model("Spider-Verse", "nitrosocke/spider-verse-diffusion", "spiderverse style "),
-     Model("Balloon Art", "Fictiverse/Stable_Diffusion_BalloonArt_Model", "BalloonArt "),
-     Model("Tron Legacy", "dallinmackay/Tron-Legacy-diffusion", "trnlgcy "),
-     Model("Pony Diffusion", "AstraliteHeart/pony-diffusion"),
-     Model("Robo Diffusion", "nousr/robo-diffusion"),
+    #  Model("Pokémon", "lambdalabs/sd-pokemon-diffusers"),
+    #  Model("Naruto", "lambdalabs/sd-naruto-diffusers"),
+    #  Model("Cyberpunk Anime", "DGSpitzer/Cyberpunk-Anime-Diffusion", "dgs illustration style "),
+    #  Model("Elden Ring", "nitrosocke/elden-ring-diffusion", "elden ring style "),
+    #  Model("Redshift", "nitrosocke/redshift-diffusion", "redshift style "),
+    #  Model("Modern Disney", "nitrosocke/mo-di-diffusion", "modern disney style "),
+    #  Model("Classic Disney", "nitrosocke/classic-anim-diffusion", "classic disney style "),
+    #  Model("Analog Diffusion", "wavymulder/Analog-Diffusion", "analog style "),
+    #  Model("Van Gogh", "dallinmackay/Van-Gogh-diffusion", "lvngvncnt "),
+    #  Model("Wavyfusion", "wavymulder/wavyfusion", "wa-vy style "),
+    #  Model("TrinArt v2", "naclbit/trinart_stable_diffusion_v2"),
+    #  Model("Spider-Verse", "nitrosocke/spider-verse-diffusion", "spiderverse style "),
+    #  Model("Balloon Art", "Fictiverse/Stable_Diffusion_BalloonArt_Model", "BalloonArt "),
+    #  Model("Tron Legacy", "dallinmackay/Tron-Legacy-diffusion", "trnlgcy "),
+    #  Model("Pony Diffusion", "AstraliteHeart/pony-diffusion"),
+    #  Model("Robo Diffusion", "nousr/robo-diffusion"),
+    #  Model("Arcane", "nitrosocke/Arcane-Diffusion", "arcane style "),
+    #  Model("Archer", "nitrosocke/archer-diffusion", "archer style "),
   ]
 
 custom_model = None
@@ -260,13 +259,27 @@ with demo:
               </div>
               <p>
                Demo for multiple fine-tuned Stable Diffusion models, trained on different styles: <br>
-               <a href="https://huggingface.co/nitrosocke/Arcane-Diffusion">Arcane</a>, <a href="https://huggingface.co/nitrosocke/archer-diffusion">Archer</a>, <a href="https://huggingface.co/nitrosocke/elden-ring-diffusion">Elden Ring</a>, <a href="https://huggingface.co/nitrosocke/spider-verse-diffusion">Spider-Verse</a>, <a href="https://huggingface.co/nitrosocke/mo-di-diffusion">Modern Disney</a>, <a href="https://huggingface.co/nitrosocke/classic-anim-diffusion">Classic Disney</a>, <a href="https://huggingface.co/dallinmackay/Van-Gogh-diffusion">Loving Vincent (Van Gogh)</a>, <a href="https://huggingface.co/nitrosocke/redshift-diffusion">Redshift renderer (Cinema4D)</a>, <a href="https://huggingface.co/prompthero/midjourney-v4-diffusion">Midjourney v4 style</a>, <a href="https://huggingface.co/hakurei/waifu-diffusion">Waifu</a>, <a href="https://huggingface.co/lambdalabs/sd-pokemon-diffusers">Pokémon</a>, <a href="https://huggingface.co/AstraliteHeart/pony-diffusion">Pony Diffusion</a>, <a href="https://huggingface.co/nousr/robo-diffusion">Robo Diffusion</a>, <a href="https://huggingface.co/DGSpitzer/Cyberpunk-Anime-Diffusion">Cyberpunk Anime</a>, <a href="https://huggingface.co/dallinmackay/Tron-Legacy-diffusion">Tron Legacy</a>, <a href="https://huggingface.co/Fictiverse/Stable_Diffusion_BalloonArt_Model">Balloon Art</a> + in colab notebook you can load any other Diffusers 🧨 SD model hosted on HuggingFace 🤗.
+               <a href="https://huggingface.co/Linaqruf/anything-v3.0">Anything V3</a>,
+               <a href="https://huggingface.co/prompthero/midjourney-v4-diffusion">Midjourney v4 style</a>,
+               <a href="https://huggingface.co/lambdalabs/sd-pokemon-diffusers">Pokémon</a>,
+               <a href="https://huggingface.co/lambdalabs/sd-naruto-diffusers">Naruto</a>,
+               <a href="https://huggingface.co/DGSpitzer/Cyberpunk-Anime-Diffusion">Cyberpunk Anime</a>, 
+               <a href="https://huggingface.co/nitrosocke/elden-ring-diffusion">Elden Ring</a>, 
+               <a href="https://huggingface.co/nitrosocke/redshift-diffusion">Redshift renderer (Cinema4D)</a>, 
+               <a href="https://huggingface.co/nitrosocke/mo-di-diffusion">Modern Disney</a>, 
+               <a href="https://huggingface.co/nitrosocke/classic-anim-diffusion">Classic Disney</a>, 
+               <a href="https://huggingface.co/wavymulder/Analog-Diffusion">Analog Diffusion</a>,
+               <a href="https://huggingface.co/dallinmackay/Van-Gogh-diffusion">Loving Vincent (Van Gogh)</a>, 
+               <a href="https://huggingface.co/wavymulder/wavyfusion">Wavyfusion</a>,
+               <a href="https://huggingface.co/naclbit/trinart_stable_diffusion_v2">TrinArt v2</a>,
+               <a href="https://huggingface.co/nitrosocke/spider-verse-diffusion">Spider-Verse</a>, 
+               <a href="https://huggingface.co/Fictiverse/Stable_Diffusion_BalloonArt_Model">Balloon Art</a>,
+               <a href="https://huggingface.co/dallinmackay/Tron-Legacy-diffusion">Tron Legacy</a>,
+               <a href="https://huggingface.co/AstraliteHeart/pony-diffusion">Pony Diffusion</a>, 
+               <a href="https://huggingface.co/nousr/robo-diffusion">Robo Diffusion</a>,
+               <a href="https://huggingface.co/nitrosocke/Arcane-Diffusion">Arcane</a>, 
+               <a href="https://huggingface.co/nitrosocke/archer-diffusion">Archer</a>.
               </p>
-              <p>You can skip the queue and load custom models in the colab: <a href="https://colab.research.google.com/gist/qunash/42112fb104509c24fd3aa6d1c11dd6e0/copy-of-fine-tuned-diffusion-gradio.ipynb"><img data-canonical-src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" src="https://camo.githubusercontent.com/84f0493939e0c4de4e6dbe113251b4bfb5353e57134ffd9fcab6b8714514d4d1/68747470733a2f2f636f6c61622e72657365617263682e676f6f676c652e636f6d2f6173736574732f636f6c61622d62616467652e737667"></a></p>
-               Running on <b>{device}</b>{(" in a <b>Google Colab</b>." if is_colab else "")}
-              </p>
-              <p>You can also duplicate this space and upgrade to gpu by going to settings:<br>
-              <a style="display:inline-block" href="https://huggingface.co/spaces/anzorq/finetuned_diffusion?duplicate=true"><img src="https://img.shields.io/badge/-Duplicate%20Space-blue?labelColor=white&style=flat&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAP5JREFUOE+lk7FqAkEURY+ltunEgFXS2sZGIbXfEPdLlnxJyDdYB62sbbUKpLbVNhyYFzbrrA74YJlh9r079973psed0cvUD4A+4HoCjsA85X0Dfn/RBLBgBDxnQPfAEJgBY+A9gALA4tcbamSzS4xq4FOQAJgCDwV2CPKV8tZAJcAjMMkUe1vX+U+SMhfAJEHasQIWmXNN3abzDwHUrgcRGmYcgKe0bxrblHEB4E/pndMazNpSZGcsZdBlYJcEL9Afo75molJyM2FxmPgmgPqlWNLGfwZGG6UiyEvLzHYDmoPkDDiNm9JR9uboiONcBXrpY1qmgs21x1QwyZcpvxt9NS09PlsPAAAAAElFTkSuQmCC&logoWidth=14" alt="Duplicate Space"></a></p>
             </div>
         """
     )
@@ -323,11 +336,15 @@ with demo:
     generate.click(inference, inputs=inputs, outputs=outputs)
 
     ex = gr.Examples([
-        [models[7].name, "tiny cute and adorable kitten adventurer dressed in a warm overcoat with survival gear on a winters day", 7.5, 25],
-        [models[4].name, "portrait of dwayne johnson", 7.0, 35],
-        [models[5].name, "portrait of a beautiful alyx vance half life", 10, 25],
-        [models[6].name, "Aloy from Horizon: Zero Dawn, half body portrait, smooth, detailed armor, beautiful face, illustration", 7.0, 30],
-        [models[5].name, "fantasy portrait painting, digital art", 4.0, 20],
+        [models[0].name, "scenery, shibuya tokyo, post-apocalypse, ruins, rust, sky, skyscraper, abandoned, blue sky, broken window, building, cloud, crane machine, outdoors, overgrown, pillar, sunset", 7.5, 50],
+        
+        # [models[0].name, "arcane style, a magical princess with golden hair", 7.5, 50],
+        # [models[1].name, "a magical princess with golden hair, archer style", 7.5, 50],
+        # [models[7].name, "tiny cute and adorable kitten adventurer dressed in a warm overcoat with survival gear on a winters day", 7.5, 25],
+        # [models[4].name, "portrait of dwayne johnson", 7.0, 35],
+        # [models[5].name, "portrait of a beautiful alyx vance half life", 10, 25],
+        # [models[6].name, "Aloy from Horizon: Zero Dawn, half body portrait, smooth, detailed armor, beautiful face, illustration", 7.0, 30],
+        # [models[5].name, "fantasy portrait painting, digital art", 4.0, 20],
     ], inputs=[model_name, prompt, guidance, steps], outputs=outputs, fn=inference, cache_examples=False)
 
     gr.HTML("""
@@ -335,11 +352,13 @@ with demo:
       <br>
       <p>Models by <a href="https://huggingface.co/nitrosocke">@nitrosocke</a>, <a href="https://twitter.com/haruu1367">@haruu1367</a>, <a href="https://twitter.com/DGSpitzer">@Helixngc7293</a>, <a href="https://twitter.com/dal_mack">@dal_mack</a>, <a href="https://twitter.com/prompthero">@prompthero</a> and others. ❤️</p>
       <p>This space uses the <a href="https://github.com/LuChengTHU/dpm-solver">DPM-Solver++</a> sampler by <a href="https://arxiv.org/abs/2206.00927">Cheng Lu, et al.</a>.</p>
-      <p>Space by:<br>
+      <p>Space originally created by:<br>
       <a href="https://twitter.com/hahahahohohe"><img src="https://img.shields.io/twitter/follow/hahahahohohe?label=%40anzorq&style=social" alt="Twitter Follow"></a><br>
       <a href="https://github.com/qunash"><img alt="GitHub followers" src="https://img.shields.io/github/followers/qunash?style=social" alt="Github Follow"></a></p><br><br>
       <a href="https://www.buymeacoffee.com/anzorq" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 45px !important;width: 162px !important;" ></a><br><br>
       <p><img src="https://visitor-badge.glitch.me/badge?page_id=anzorq.finetuned_diffusion" alt="visitors"></p>
+      <p>Customized by:<br>
+      <a href="https://twitter.com/LambdaAPI">mlteam@LambdaAPI</a>
     </div>
     """)
 
