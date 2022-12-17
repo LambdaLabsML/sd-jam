@@ -151,7 +151,8 @@ def txt_to_img(model_path, prompt, n_images, neg_prompt, guidance, steps, width,
       height = height,
       generator = generator)
     
-    return replace_nsfw_images(result)
+    #return replace_nsfw_images(result)
+    return result.images
 
 def img_to_img(model_path, prompt, n_images, neg_prompt, img, strength, guidance, steps, width, height, generator):
 
