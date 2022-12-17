@@ -123,8 +123,9 @@ def inference(model_name, prompt, guidance, steps, n_images=1, width=512, height
       model_name_clean = re.sub(r'[\\/*?:"<>|]',"", model_name_clean)
       model_name_clean = model_name_clean[:max_model_name_length]
 
-      image_name = result_path + run_id + \
-          "_" + model_name_clean + \
+      image_name = result_path + \
+          model_name_clean + \
+          "_" + run_id + \
           "_" + str(i_img) + ".png"
 
       metadata = PngInfo()
