@@ -30,5 +30,9 @@ git checkout lambda && \
 pip install -r requirements.txt
 ```
 
+## Run demo
 
+```
+CUDA_VISIBLE_DEVICES=0,1,2,3 serve run app:app
+```
 

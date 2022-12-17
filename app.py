@@ -7,6 +7,8 @@ import datetime
 import time
 import psutil
 
+from ray.serve.gradio_integrations import GradioServer
+
 start_time = time.time()
 is_colab = utils.is_google_colab()
 
@@ -20,7 +22,7 @@ class Model:
 
 models = [
      Model("Arcane", "nitrosocke/Arcane-Diffusion", "arcane style "),
-     Model("Dreamlike Diffusion 1.0", "dreamlike-art/dreamlike-diffusion-1.0", "dreamlikeart "),
+     #Model("Dreamlike Diffusion 1.0", "dreamlike-art/dreamlike-diffusion-1.0", "dreamlikeart "),
      Model("Archer", "nitrosocke/archer-diffusion", "archer style "),
      Model("Anything V3", "Linaqruf/anything-v3.0", ""),
      Model("Modern Disney", "nitrosocke/mo-di-diffusion", "modern disney style "),
@@ -211,7 +213,10 @@ def replace_nsfw_images(results):
 
 css = """.finetuned-diffusion-div div{display:inline-flex;align-items:center;gap:.8rem;font-size:1.75rem}.finetuned-diffusion-div div h1{font-weight:900;margin-bottom:7px}.finetuned-diffusion-div p{margin-bottom:10px;font-size:94%}a{text-decoration:underline}.tabs{margin-top:0;margin-bottom:0}#gallery{min-height:20rem}
 """
-with gr.Blocks(css=css) as demo:
+
+demo = gr.Blocks(css=css)
+
+with demo:
     gr.HTML(
         f"""
             <div class="finetuned-diffusion-div">
@@ -304,6 +309,8 @@ with gr.Blocks(css=css) as demo:
 
 print(f"Space built in {time.time() - start_time:.2f} seconds")
 
-if not is_colab:
-  demo.queue(concurrency_count=1)
-demo.launch(debug=is_colab, share=is_colab)
+
+#demo.queue(concurrency_count=1)
+#demo.launch(debug=True, share=True)
+
+app = GradioServer.options(num_replicas=torch.cuda.device_count(), ray_actor_options={"num_gpus" : 1.0}).bind(demo)

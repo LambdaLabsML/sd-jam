@@ -9,4 +9,5 @@ accelerate==0.12.0
 #OmegaConf
 #pytorch_lightning
 triton==2.0.0.dev20220701
-gradio==3.14.0
+gradio==3.5.0
+ray[serve]
