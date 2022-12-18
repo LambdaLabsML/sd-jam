@@ -1,1 +1,3 @@
 *.pyc
+files/*
+gradio_cached_examples/*

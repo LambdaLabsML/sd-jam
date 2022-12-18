@@ -139,6 +139,47 @@ def inference(model_name, prompt, guidance, steps, n_images=1, width=512, height
   except Exception as e:
     return None, error_str(e)
 
+
+def inference_examples(model_name, prompt, guidance, steps, n_images=1, width=512, height=512, seed=0, neg_prompt=""):
+
+  print(psutil.virtual_memory()) # print memory usage
+
+  global current_model
+  for model in models:
+    if model.name == model_name:
+      current_model = model
+      model_path = current_model.path
+
+  generator = torch.Generator('cuda').manual_seed(seed) if seed != 0 else None
+
+
+  try:
+    images = txt_to_img(model_path, prompt, n_images, neg_prompt, guidance, steps, width, height, generator)
+
+    # save images to disk
+    run_id = ''.join(random.choices(string.ascii_lowercase, k=5))
+    for i_img in range(n_images):
+      model_name_clean = model_name.replace(' ', '')
+      model_name_clean = re.sub(r'[\\/*?:"<>|]',"", model_name_clean)
+      model_name_clean = model_name_clean[:max_model_name_length]
+
+      image_name = result_path + \
+          model_name_clean + \
+          "_" + run_id + \
+          "_" + str(i_img) + ".png"
+
+      metadata = PngInfo()
+      metadata.add_text("stablediffusion.Style", model_name)
+      metadata.add_text("stablediffusion.Prompt", prompt)
+      metadata.add_text("stablediffusion.Steps", str(steps))
+      metadata.add_text("stablediffusion.Guidance", str(guidance))
+      metadata.add_text("stablediffusion.Seed", str(seed))
+
+      images[i_img].save(image_name, pnginfo=metadata)
+    return images
+  except Exception as e:
+    return None, error_str(e)
+
 def txt_to_img(model_path, prompt, n_images, neg_prompt, guidance, steps, width, height, generator):
 
     print(f"{datetime.datetime.now()} txt_to_img, model: {current_model.name}")
@@ -345,7 +386,7 @@ with demo:
         [models[8].name, "Anime fine details portrait of a magical princess in front of modern tokyo city landscape, anime masterpiece, 8k, sharp high quality", 7.5, 50, 1, 768, 768, 94107, ""],
         [models[9].name, "Anime fine details portrait of a magical princess in front of modern tokyo city landscape, anime masterpiece, 8k, sharp high quality", 7.5, 50, 1, 768, 768, 94107, ""],
         [models[10].name, "lvngvncnt, streets and canals in old town Amsterdam, highly detailed, highly detailed", 7.5, 50, 1, 768, 768, 94107, ""],
-    ], inputs=[model_name, prompt, guidance, steps, n_images, width, height, seed, neg_prompt], outputs=outputs, fn=inference, cache_examples=False)
+    ], inputs=[model_name, prompt, guidance, steps, n_images, width, height, seed, neg_prompt], outputs=gallery, fn=inference_examples, cache_examples=True)
 
     gr.HTML("""
     <div style="border-top: 1px solid #303030;">
