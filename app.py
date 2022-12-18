@@ -345,7 +345,7 @@ with demo:
             with gr.Group():
               neg_prompt = gr.Textbox(label="Negative prompt", placeholder="What to exclude from the image")
 
-              n_images = gr.Slider(label="Images", value=1, minimum=1, maximum=4, step=1)
+              n_images = gr.Slider(label="Images", value=1, minimum=1, maximum=2, step=1)
 
               with gr.Row():
                 guidance = gr.Slider(label="Guidance scale", value=7.5, maximum=15)
