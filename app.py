@@ -33,7 +33,7 @@ models = [
      Model("Redshift", "nitrosocke/redshift-diffusion", "redshift style "),
      Model("Analog Diffusion", "wavymulder/Analog-Diffusion", "analog style "),
      Model("Wavyfusion", "wavymulder/wavyfusion", "wa-vy style "),
-     Model("Pokémon", "lambdalabs/sd-pokemon-diffusers"),
+     Model("Pokemon", "lambdalabs/sd-pokemon-diffusers"),
      Model("Naruto", "lambdalabs/sd-naruto-diffusers"),
      Model("Modern Disney", "nitrosocke/mo-di-diffusion", "modern disney style "),
      Model("Classic Disney", "nitrosocke/classic-anim-diffusion", "classic disney style "),
@@ -300,24 +300,22 @@ with demo:
                Demo for multiple fine-tuned Stable Diffusion models, trained on different styles: <br>
                <a href="https://huggingface.co/Linaqruf/anything-v3.0">Anything V3</a>,
                <a href="https://huggingface.co/prompthero/midjourney-v4-diffusion">Midjourney v4 style</a>,
-               <a href="https://huggingface.co/lambdalabs/sd-pokemon-diffusers">Pokémon</a>,
-               <a href="https://huggingface.co/lambdalabs/sd-naruto-diffusers">Naruto</a>,
-               <a href="https://huggingface.co/DGSpitzer/Cyberpunk-Anime-Diffusion">Cyberpunk Anime</a>, 
                <a href="https://huggingface.co/nitrosocke/elden-ring-diffusion">Elden Ring</a>, 
                <a href="https://huggingface.co/nitrosocke/redshift-diffusion">Redshift renderer (Cinema4D)</a>, 
+               <a href="https://huggingface.co/wavymulder/Analog-Diffusion">Analog Diffusion</a>,
+               <a href="https://huggingface.co/wavymulder/wavyfusion">Wavyfusion</a>,
+               <a href="https://huggingface.co/lambdalabs/sd-pokemon-diffusers">Pokémon</a>,
+               <a href="https://huggingface.co/lambdalabs/sd-naruto-diffusers">Naruto</a>,
                <a href="https://huggingface.co/nitrosocke/mo-di-diffusion">Modern Disney</a>, 
                <a href="https://huggingface.co/nitrosocke/classic-anim-diffusion">Classic Disney</a>, 
-               <a href="https://huggingface.co/wavymulder/Analog-Diffusion">Analog Diffusion</a>,
                <a href="https://huggingface.co/dallinmackay/Van-Gogh-diffusion">Loving Vincent (Van Gogh)</a>, 
-               <a href="https://huggingface.co/wavymulder/wavyfusion">Wavyfusion</a>,
-               <a href="https://huggingface.co/naclbit/trinart_stable_diffusion_v2">TrinArt v2</a>,
                <a href="https://huggingface.co/nitrosocke/spider-verse-diffusion">Spider-Verse</a>, 
                <a href="https://huggingface.co/Fictiverse/Stable_Diffusion_BalloonArt_Model">Balloon Art</a>,
                <a href="https://huggingface.co/dallinmackay/Tron-Legacy-diffusion">Tron Legacy</a>,
-               <a href="https://huggingface.co/AstraliteHeart/pony-diffusion">Pony Diffusion</a>, 
                <a href="https://huggingface.co/nousr/robo-diffusion">Robo Diffusion</a>,
                <a href="https://huggingface.co/nitrosocke/Arcane-Diffusion">Arcane</a>, 
                <a href="https://huggingface.co/nitrosocke/archer-diffusion">Archer</a>.
+               <a href="https://huggingface.co/DGSpitzer/Cyberpunk-Anime-Diffusion">Cyberpunk Anime</a>, 
               </p>
             </div>
         """
@@ -386,7 +384,7 @@ with demo:
         [models[8].name, "Anime fine details portrait of a magical princess in front of modern tokyo city landscape, anime masterpiece, 8k, sharp high quality", 7.5, 50, 1, 768, 768, 94107, ""],
         [models[9].name, "Anime fine details portrait of a magical princess in front of modern tokyo city landscape, anime masterpiece, 8k, sharp high quality", 7.5, 50, 1, 768, 768, 94107, ""],
         [models[10].name, "lvngvncnt, streets and canals in old town Amsterdam, highly detailed, highly detailed", 7.5, 50, 1, 768, 768, 94107, ""],
-    ], inputs=[model_name, prompt, guidance, steps, n_images, width, height, seed, neg_prompt], outputs=gallery, fn=inference_examples, cache_examples=True)
+    ], inputs=[model_name, prompt, guidance, steps, n_images, width, height, seed, neg_prompt], outputs=gallery, fn=inference_examples, cache_examples=True, examples_per_page=16)
 
     gr.HTML("""
     <div style="border-top: 1px solid #303030;">
