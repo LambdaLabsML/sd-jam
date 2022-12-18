@@ -24,7 +24,7 @@ cd xformers && \
 git submodule update --init --recursive && \
 pip install -e . --install-option develop && \
 cd .. && \
-git clone https://huggingface.co/spaces/chuanli-lambda/finetuned_diffusion && \
+git clone https://huggingface.co/spaces/lambdalabs/finetuned_diffusion && \
 cd finetuned_diffusion && \
 git checkout lambda && \
 pip install -r requirements.txt && \
