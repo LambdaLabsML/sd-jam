@@ -29,24 +29,22 @@ class Model:
 models = [
      Model("Anything V3", "Linaqruf/anything-v3.0", ""),
      Model("Midjourney v4", "prompthero/midjourney-v4-diffusion", "mdjrny-v4 style "),
-    #  Model("Pokémon", "lambdalabs/sd-pokemon-diffusers"),
-    #  Model("Naruto", "lambdalabs/sd-naruto-diffusers"),
-    #  Model("Cyberpunk Anime", "DGSpitzer/Cyberpunk-Anime-Diffusion", "dgs illustration style "),
-    #  Model("Elden Ring", "nitrosocke/elden-ring-diffusion", "elden ring style "),
-    #  Model("Redshift", "nitrosocke/redshift-diffusion", "redshift style "),
-    #  Model("Modern Disney", "nitrosocke/mo-di-diffusion", "modern disney style "),
-    #  Model("Classic Disney", "nitrosocke/classic-anim-diffusion", "classic disney style "),
-    #  Model("Analog Diffusion", "wavymulder/Analog-Diffusion", "analog style "),
-    #  Model("Van Gogh", "dallinmackay/Van-Gogh-diffusion", "lvngvncnt "),
-    #  Model("Wavyfusion", "wavymulder/wavyfusion", "wa-vy style "),
-    #  Model("TrinArt v2", "naclbit/trinart_stable_diffusion_v2"),
-    #  Model("Spider-Verse", "nitrosocke/spider-verse-diffusion", "spiderverse style "),
-    #  Model("Balloon Art", "Fictiverse/Stable_Diffusion_BalloonArt_Model", "BalloonArt "),
-    #  Model("Tron Legacy", "dallinmackay/Tron-Legacy-diffusion", "trnlgcy "),
-    #  Model("Pony Diffusion", "AstraliteHeart/pony-diffusion"),
-    #  Model("Robo Diffusion", "nousr/robo-diffusion"),
-    #  Model("Arcane", "nitrosocke/Arcane-Diffusion", "arcane style "),
-    #  Model("Archer", "nitrosocke/archer-diffusion", "archer style "),
+     Model("Elden Ring", "nitrosocke/elden-ring-diffusion", "elden ring style "),
+     Model("Redshift", "nitrosocke/redshift-diffusion", "redshift style "),
+     Model("Analog Diffusion", "wavymulder/Analog-Diffusion", "analog style "),
+     Model("Wavyfusion", "wavymulder/wavyfusion", "wa-vy style "),
+     Model("Pokémon", "lambdalabs/sd-pokemon-diffusers"),
+     Model("Naruto", "lambdalabs/sd-naruto-diffusers"),
+     Model("Modern Disney", "nitrosocke/mo-di-diffusion", "modern disney style "),
+     Model("Classic Disney", "nitrosocke/classic-anim-diffusion", "classic disney style "),
+     Model("Van Gogh", "dallinmackay/Van-Gogh-diffusion", "lvngvncnt "),
+     Model("Spider-Verse", "nitrosocke/spider-verse-diffusion", "spiderverse style "),
+     Model("Balloon Art", "Fictiverse/Stable_Diffusion_BalloonArt_Model", "BalloonArt "),
+     Model("Tron Legacy", "dallinmackay/Tron-Legacy-diffusion", "trnlgcy "),
+     Model("Robo Diffusion", "nousr/robo-diffusion"),
+     Model("Arcane", "nitrosocke/Arcane-Diffusion", "arcane style "),
+     Model("Archer", "nitrosocke/archer-diffusion", "archer style "),
+     Model("Cyberpunk Anime", "DGSpitzer/Cyberpunk-Anime-Diffusion", "dgs illustration style "),
   ]
 
 custom_model = None
@@ -336,27 +334,24 @@ with demo:
     generate.click(inference, inputs=inputs, outputs=outputs)
 
     ex = gr.Examples([
-        [models[0].name, "scenery, shibuya tokyo, post-apocalypse, ruins, rust, sky, skyscraper, abandoned, blue sky, broken window, building, cloud, crane machine, outdoors, overgrown, pillar, sunset", 7.5, 50],
-        
-        # [models[0].name, "arcane style, a magical princess with golden hair", 7.5, 50],
-        # [models[1].name, "a magical princess with golden hair, archer style", 7.5, 50],
-        # [models[7].name, "tiny cute and adorable kitten adventurer dressed in a warm overcoat with survival gear on a winters day", 7.5, 25],
-        # [models[4].name, "portrait of dwayne johnson", 7.0, 35],
-        # [models[5].name, "portrait of a beautiful alyx vance half life", 10, 25],
-        # [models[6].name, "Aloy from Horizon: Zero Dawn, half body portrait, smooth, detailed armor, beautiful face, illustration", 7.0, 30],
-        # [models[5].name, "fantasy portrait painting, digital art", 4.0, 20],
-    ], inputs=[model_name, prompt, guidance, steps], outputs=outputs, fn=inference, cache_examples=False)
+        [models[0].name, "scenery, shibuya tokyo, post-apocalypse, ruins, rust, sky, skyscraper, abandoned, blue sky, broken window, building, cloud, crane machine, outdoors, overgrown, pillar, sunset", 7.5, 50, 1, 1024, 1024, 94107, ""],
+        [models[1].name, "massive rocket ship during its launch from the ground| ground level full of fire and smoke| extreme long shot| centered| vibrant| massive scale| dynamic lighting| in mdjrny-v4 style", 7.5, 50, 1, 1024, 1024, 94107, ""],
+        [models[2].name, "elden ring style dark blue night (castle) on a cliff", 7.0, 30, 1, 1024, 576, 94107, "bright day"],
+        [models[3].name, "redshift style magical princess with golden hair", 7.0, 50, 1, 768, 768, 94107, ""],
+        [models[4].name, "analog style portrait of Heath Ledger as a 1930s baseball player", 7.0, 20, 1, 512, 768, 94107, "blur haze"],
+        [models[5].name, "wa-vy style cute girl at the (lantern festival:1.2)", 7.0, 50, 1, 768, 768, 94107, "blurry face"],
+        [models[6].name, "Cute Baby Yoda creature", 7.5, 50, 1, 512, 512, 94107, "Vivillon"],
+        [models[7].name, "ninja bunny portrait", 7.5, 50, 1, 512, 512, 94107, "mask"],
+        [models[8].name, "Anime fine details portrait of a magical princess in front of modern tokyo city landscape, anime masterpiece, 8k, sharp high quality", 7.5, 50, 1, 768, 768, 94107, ""],
+        [models[9].name, "Anime fine details portrait of a magical princess in front of modern tokyo city landscape, anime masterpiece, 8k, sharp high quality", 7.5, 50, 1, 768, 768, 94107, ""],
+        [models[10].name, "lvngvncnt, streets and canals in old town Amsterdam, highly detailed, highly detailed", 7.5, 50, 1, 768, 768, 94107, ""],
+    ], inputs=[model_name, prompt, guidance, steps, n_images, width, height, seed, neg_prompt], outputs=outputs, fn=inference, cache_examples=False)
 
     gr.HTML("""
     <div style="border-top: 1px solid #303030;">
       <br>
-      <p>Models by <a href="https://huggingface.co/nitrosocke">@nitrosocke</a>, <a href="https://twitter.com/haruu1367">@haruu1367</a>, <a href="https://twitter.com/DGSpitzer">@Helixngc7293</a>, <a href="https://twitter.com/dal_mack">@dal_mack</a>, <a href="https://twitter.com/prompthero">@prompthero</a> and others. ❤️</p>
-      <p>This space uses the <a href="https://github.com/LuChengTHU/dpm-solver">DPM-Solver++</a> sampler by <a href="https://arxiv.org/abs/2206.00927">Cheng Lu, et al.</a>.</p>
       <p>Space originally created by:<br>
       <a href="https://twitter.com/hahahahohohe"><img src="https://img.shields.io/twitter/follow/hahahahohohe?label=%40anzorq&style=social" alt="Twitter Follow"></a><br>
-      <a href="https://github.com/qunash"><img alt="GitHub followers" src="https://img.shields.io/github/followers/qunash?style=social" alt="Github Follow"></a></p><br><br>
-      <a href="https://www.buymeacoffee.com/anzorq" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 45px !important;width: 162px !important;" ></a><br><br>
-      <p><img src="https://visitor-badge.glitch.me/badge?page_id=anzorq.finetuned_diffusion" alt="visitors"></p>
       <p>Customized by:<br>
       <a href="https://twitter.com/LambdaAPI">mlteam@LambdaAPI</a>
     </div>
