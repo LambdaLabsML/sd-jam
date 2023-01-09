@@ -27,24 +27,24 @@ class Model:
         self.pipe_i2i = None
 
 models = [
-     Model("Anything V3", "Linaqruf/anything-v3.0", ""),
-     Model("Midjourney v4", "prompthero/midjourney-v4-diffusion", "mdjrny-v4 style "),
-     Model("Elden Ring", "nitrosocke/elden-ring-diffusion", "elden ring style "),
-     Model("Redshift", "nitrosocke/redshift-diffusion", "redshift style "),
-     Model("Analog Diffusion", "wavymulder/Analog-Diffusion", "analog style "),
-     Model("Wavyfusion", "wavymulder/wavyfusion", "wa-vy style "),
-     Model("Pokemon", "lambdalabs/sd-pokemon-diffusers"),
-     Model("Naruto", "lambdalabs/sd-naruto-diffusers"),
+     Model("Anything V3 (Anime Style)", "Linaqruf/anything-v3.0", ""),
+     Model("Midjourney v4 (Digital Art)", "prompthero/midjourney-v4-diffusion", "mdjrny-v4 style "),
+     Model("Elden Ring (Fantasy)", "nitrosocke/elden-ring-diffusion", "elden ring style "),
+     Model("Redshift (Realistic 3D artwork)", "nitrosocke/redshift-diffusion", "redshift style "),
+     Model("Analog Diffusion (Analog photographs)", "wavymulder/Analog-Diffusion", "analog style "),
+     Model("Wavyfusion (General illustrated styles)", "wavymulder/wavyfusion", "wa-vy style "),
+     Model("Pokemon (Cute Monsters)", "lambdalabs/sd-pokemon-diffusers"),
+     Model("Naruto (Ninja Anime)", "lambdalabs/sd-naruto-diffusers"),
      Model("Modern Disney", "nitrosocke/mo-di-diffusion", "modern disney style "),
      Model("Classic Disney", "nitrosocke/classic-anim-diffusion", "classic disney style "),
      Model("Van Gogh", "dallinmackay/Van-Gogh-diffusion", "lvngvncnt "),
      Model("Spider-Verse", "nitrosocke/spider-verse-diffusion", "spiderverse style "),
-     Model("Balloon Art", "Fictiverse/Stable_Diffusion_BalloonArt_Model", "BalloonArt "),
+     Model("Balloon Art (Artwork made of balloons)", "Fictiverse/Stable_Diffusion_BalloonArt_Model", "BalloonArt "),
      Model("Tron Legacy", "dallinmackay/Tron-Legacy-diffusion", "trnlgcy "),
-     Model("Robo Diffusion", "nousr/robo-diffusion"),
-     Model("Arcane", "nitrosocke/Arcane-Diffusion", "arcane style "),
-     Model("Archer", "nitrosocke/archer-diffusion", "archer style "),
-     Model("Cyberpunk Anime", "DGSpitzer/Cyberpunk-Anime-Diffusion", "dgs illustration style "),
+     #Model("Robo Diffusion (Cool looking robots)", "nousr/robo-diffusion"),
+     #Model("Arcane", "nitrosocke/Arcane-Diffusion", "arcane style "),
+     #Model("Archer", "nitrosocke/archer-diffusion", "archer style "),
+     #Model("Cyberpunk Anime", "DGSpitzer/Cyberpunk-Anime-Diffusion", "dgs illustration style "),
   ]
 
 custom_model = None
@@ -312,10 +312,6 @@ with demo:
                <a href="https://huggingface.co/nitrosocke/spider-verse-diffusion">Spider-Verse</a>, 
                <a href="https://huggingface.co/Fictiverse/Stable_Diffusion_BalloonArt_Model">Balloon Art</a>,
                <a href="https://huggingface.co/dallinmackay/Tron-Legacy-diffusion">Tron Legacy</a>,
-               <a href="https://huggingface.co/nousr/robo-diffusion">Robo Diffusion</a>,
-               <a href="https://huggingface.co/nitrosocke/Arcane-Diffusion">Arcane</a>, 
-               <a href="https://huggingface.co/nitrosocke/archer-diffusion">Archer</a>.
-               <a href="https://huggingface.co/DGSpitzer/Cyberpunk-Anime-Diffusion">Cyberpunk Anime</a>, 
               </p>
             </div>
         """
