@@ -38,9 +38,9 @@ models = [
      Model("Modern Disney", "nitrosocke/mo-di-diffusion", "modern disney style "),
      Model("Classic Disney", "nitrosocke/classic-anim-diffusion", "classic disney style "),
      Model("Van Gogh", "dallinmackay/Van-Gogh-diffusion", "lvngvncnt "),
-     Model("Spider-Verse", "nitrosocke/spider-verse-diffusion", "spiderverse style "),
-     Model("Balloon Art (Artwork made of balloons)", "Fictiverse/Stable_Diffusion_BalloonArt_Model", "BalloonArt "),
-     Model("Tron Legacy", "dallinmackay/Tron-Legacy-diffusion", "trnlgcy "),
+     #Model("Spider-Verse", "nitrosocke/spider-verse-diffusion", "spiderverse style "),
+     #Model("Balloon Art (Artwork made of balloons)", "Fictiverse/Stable_Diffusion_BalloonArt_Model", "BalloonArt "),
+     #Model("Tron Legacy", "dallinmackay/Tron-Legacy-diffusion", "trnlgcy "),
      #Model("Robo Diffusion (Cool looking robots)", "nousr/robo-diffusion"),
      #Model("Arcane", "nitrosocke/Arcane-Diffusion", "arcane style "),
      #Model("Archer", "nitrosocke/archer-diffusion", "archer style "),
@@ -309,9 +309,6 @@ with demo:
                <a href="https://huggingface.co/nitrosocke/mo-di-diffusion">Modern Disney</a>, 
                <a href="https://huggingface.co/nitrosocke/classic-anim-diffusion">Classic Disney</a>, 
                <a href="https://huggingface.co/dallinmackay/Van-Gogh-diffusion">Loving Vincent (Van Gogh)</a>, 
-               <a href="https://huggingface.co/nitrosocke/spider-verse-diffusion">Spider-Verse</a>, 
-               <a href="https://huggingface.co/Fictiverse/Stable_Diffusion_BalloonArt_Model">Balloon Art</a>,
-               <a href="https://huggingface.co/dallinmackay/Tron-Legacy-diffusion">Tron Legacy</a>,
               </p>
             </div>
         """
@@ -398,4 +395,4 @@ print(f"Space built in {time.time() - start_time:.2f} seconds")
 #demo.queue(concurrency_count=1)
 #demo.launch(debug=True, share=True)
 
-app = GradioServer.options(num_replicas=torch.cuda.device_count(), ray_actor_options={"num_gpus" : 1.0}).bind(demo)
+app = GradioServer.options(num_replicas=torch.cuda.device_count() * 2, ray_actor_options={"num_gpus" : 0.5}).bind(demo)
