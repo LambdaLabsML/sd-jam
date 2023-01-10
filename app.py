@@ -27,14 +27,14 @@ class Model:
         self.pipe_i2i = None
 
 models = [
-     Model("Anything V3", "Linaqruf/anything-v3.0", ""),
-     Model("Midjourney v4", "prompthero/midjourney-v4-diffusion", "mdjrny-v4 style "),
-     Model("Elden Ring", "nitrosocke/elden-ring-diffusion", "elden ring style "),
-     Model("Redshift", "nitrosocke/redshift-diffusion", "redshift style "),
-     Model("Analog Diffusion", "wavymulder/Analog-Diffusion", "analog style "),
-     Model("Wavyfusion", "wavymulder/wavyfusion", "wa-vy style "),
-     Model("Pokemon", "lambdalabs/sd-pokemon-diffusers"),
-     Model("Naruto", "lambdalabs/sd-naruto-diffusers"),
+     Model("Anything V3 (Anime Style)", "Linaqruf/anything-v3.0", ""),
+     Model("Midjourney v4 (Digital Art)", "prompthero/midjourney-v4-diffusion", "mdjrny-v4 style "),
+     Model("Elden Ring (Fantasy)", "nitrosocke/elden-ring-diffusion", "elden ring style "),
+     Model("Redshift (Realistic 3D artwork)", "nitrosocke/redshift-diffusion", "redshift style "),
+     Model("Analog Diffusion (Analog photographs)", "wavymulder/Analog-Diffusion", "analog style "),
+     Model("Wavyfusion (General illustrated styles)", "wavymulder/wavyfusion", "wa-vy style "),
+     Model("Pokemon (Cute Monsters)", "lambdalabs/sd-pokemon-diffusers"),
+     Model("Naruto (Ninja Anime)", "lambdalabs/sd-naruto-diffusers"),
      Model("Modern Disney", "nitrosocke/mo-di-diffusion", "modern disney style "),
      Model("Classic Disney", "nitrosocke/classic-anim-diffusion", "classic disney style "),
      Model("Van Gogh", "dallinmackay/Van-Gogh-diffusion", "lvngvncnt "),
@@ -116,6 +116,7 @@ def inference(model_name, prompt, guidance, steps, n_images=1, width=512, height
     run_id = ''.join(random.choices(string.ascii_lowercase, k=5))
     download_file_path = [ ]
     for i_img in range(n_images):
+      model_name = model_name.split(" (")[0]
       model_name_clean = model_name.replace(' ', '')
       model_name_clean = re.sub(r'[\\/*?:"<>|]',"", model_name_clean)
       model_name_clean = model_name_clean[:max_model_name_length]
@@ -298,14 +299,14 @@ with demo:
               </div>
               <p>
                Demo for multiple fine-tuned Stable Diffusion models, trained on different styles: <br>
-               <a href="https://huggingface.co/Linaqruf/anything-v3.0">Anything V3 (Anime Style)</a>,
-               <a href="https://huggingface.co/prompthero/midjourney-v4-diffusion">Midjourney v4 (Digital Art)</a>,
-               <a href="https://huggingface.co/nitrosocke/elden-ring-diffusion">Elden Ring (Fantasy)</a>, 
-               <a href="https://huggingface.co/nitrosocke/redshift-diffusion">Redshift renderer (Realistic 3D artwork)</a>, 
-               <a href="https://huggingface.co/wavymulder/Analog-Diffusion">Analog Diffusion (Analog photographs)</a>,
-               <a href="https://huggingface.co/wavymulder/wavyfusion">Wavyfusion (General illustrated styles)</a>,
-               <a href="https://huggingface.co/lambdalabs/sd-pokemon-diffusers">Pokémon (Cute Monsters)</a>,
-               <a href="https://huggingface.co/lambdalabs/sd-naruto-diffusers">Naruto (Ninja Anime)</a>,
+               <a href="https://huggingface.co/Linaqruf/anything-v3.0">Anything V3</a>,
+               <a href="https://huggingface.co/prompthero/midjourney-v4-diffusion">Midjourney v4 style</a>,
+               <a href="https://huggingface.co/nitrosocke/elden-ring-diffusion">Elden Ring</a>, 
+               <a href="https://huggingface.co/nitrosocke/redshift-diffusion">Redshift renderer (Cinema4D)</a>, 
+               <a href="https://huggingface.co/wavymulder/Analog-Diffusion">Analog Diffusion</a>,
+               <a href="https://huggingface.co/wavymulder/wavyfusion">Wavyfusion</a>,
+               <a href="https://huggingface.co/lambdalabs/sd-pokemon-diffusers">Pokémon</a>,
+               <a href="https://huggingface.co/lambdalabs/sd-naruto-diffusers">Naruto</a>,
                <a href="https://huggingface.co/nitrosocke/mo-di-diffusion">Modern Disney</a>, 
                <a href="https://huggingface.co/nitrosocke/classic-anim-diffusion">Classic Disney</a>, 
                <a href="https://huggingface.co/dallinmackay/Van-Gogh-diffusion">Loving Vincent (Van Gogh)</a>, 
