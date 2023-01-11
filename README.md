@@ -28,7 +28,13 @@ git clone https://huggingface.co/spaces/lambdalabs/finetuned_diffusion && \
 cd finetuned_diffusion && \
 git checkout lambda && \
 pip install -r requirements.txt && \
-pip install --force-reinstall httpcore==0.15
+pip install --force-reinstall httpcore==0.15 && \
+pip uninstall fastapi && \
+pip uninstall httpx && \
+pip uninstall starlette && \
+pip install fastapi==0.88.0 && \
+pip install httpx==0.23.1 && \
+pip install starlette==0.22.0
 ```
 
 ## Run demo
