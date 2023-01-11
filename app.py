@@ -202,7 +202,8 @@ def txt_to_img(model_path, prompt, n_images, neg_prompt, guidance, steps, width,
           pipe = StableDiffusionPipeline.from_pretrained(
               current_model_path,
               torch_dtype=torch.float16,
-              scheduler=DPMSolverMultistepScheduler.from_pretrained(current_model.path, subfolder="scheduler")
+              scheduler=DPMSolverMultistepScheduler.from_pretrained(current_model.path, subfolder="scheduler"),
+              safety_checker=None
               )
           # pipe = pipe.to("cpu")
           # pipe = current_model.pipe_t2i
