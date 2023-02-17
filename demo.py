@@ -1,3 +1,4 @@
+from pathlib import Path
 from diffusers import AutoencoderKL, UNet2DConditionModel, StableDiffusionPipeline, StableDiffusionImg2ImgPipeline, DPMSolverMultistepScheduler
 import gradio as gr
 import torch
@@ -15,8 +16,10 @@ from ray.serve.gradio_integrations import GradioServer
 
 start_time = time.time()
 is_colab = utils.is_google_colab()
-result_path = "/home/ubuntu/ml/chuan/lambda-demo/results/"
+result_path = "./results/"
 max_model_name_length = 16
+
+Path(result_path).mkdir(parents=True, exist_ok=True)
 
 class Model:
     def __init__(self, name, path="", prefix=""):
@@ -395,6 +398,6 @@ print(f"Space built in {time.time() - start_time:.2f} seconds")
 
 
 demo.queue(concurrency_count=1, max_size=4)
-demo.launch(server_port=8266))
+demo.launch(server_port=8266)
 
 #app = GradioServer.options(num_replicas=torch.cuda.device_count() * 2, ray_actor_options={"num_gpus" : 0.5}).bind(demo)
